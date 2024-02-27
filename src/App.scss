@@ -1,0 +1,81 @@
+:root {
+  --color: #6034ff;
+}
+
+.App {
+  background-color: #181818;
+  width: 100%;
+  min-height: 100vh;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-container,
+.preview-container {
+  width: 50%;
+  height: 100vh;
+  padding: 5vh 5vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-header {
+  padding: 1rem;
+  font-size: 24px;
+  box-sizing: border-box;
+  border-bottom: solid 1px var(--color);
+  background-color: #111111;
+  border-radius: 12px 12px 0 0;
+  color: var(--color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--color) 0px 0px 12px;
+}
+
+#editor {
+  all: unset;
+  background-color: #111111;
+  padding: 1rem;
+  color: rgba(245, 245, 245, 0.739);
+  flex-grow: 1;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: var(--color) 0px 0px 12px;
+  border-radius: 0 0 12px 12px;
+}
+
+#preview {
+  background-color: #111111;
+  padding: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  color: rgba(245, 245, 245, 0.739);
+  box-shadow: var(--color) 0px 0px 12px;
+  border-radius: 0 0 12px 12px;
+}
+
+button {
+  all: unset;
+  background-color: var(--color);
+  border-radius: 12px;
+  color: whitesmoke;
+  font-size: 16px;
+  padding: 4px 8px;
+  text-transform: lowercase;
+}
+
+@media screen and (max-width: 900px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .editor-container,
+  .preview-container {
+    width: 100%;
+    height: 50vh;
+  }
+}
