@@ -7,9 +7,9 @@ import hljs from "highlight.js";
 import DOMPurify from "isomorphic-dompurify";
 
 import "highlight.js/styles/github-dark.css";
+import Footer from "./Footer/Footer";
 
 function App() {
-  
   const initialValue = `
 # Welcome to my React Markdown Previewer!
 
@@ -93,58 +93,59 @@ You can also make text **bold**... whoa!
 
   return (
     <div className="App">
-      <section className="editor-container">
-        <article className="container">
-          <header className="container-header">
-            // Editor
-            <button type="button" onClick={() => setEditorValue(initialValue)}>
-              Reset
-            </button>
-          </header>
-          <textarea
-            ref={editorWindow}
-            id="editor"
-            placeholder="Type your text here..."
-            value={editorValue}
-            onChange={(e) => {
-              setEditorValue(e.target.value);
-            }}
-            onScroll={(e) => {
-              let p =
-                (e.currentTarget.scrollTop /
-                  (e.currentTarget.scrollHeight -
-                    e.currentTarget.offsetHeight)) *
-                100;
-              setScrollPosition(p);
-              //console.log(p);
-              // console.log("scrollP :", e.currentTarget.scrollTop);
-              // console.log("pourcent :", p);
+      <div className="wrapper">
+        <section className="editor-section">
+          <article className="container">
+            <header className="container-header">
+              <span>Editor</span>
+              <button
+                type="button"
+                onClick={() => setEditorValue(initialValue)}
+              >
+                Reset
+              </button>
+            </header>
+            <textarea
+              ref={editorWindow}
+              id="editor"
+              placeholder="Type your text here..."
+              value={editorValue}
+              onChange={(e) => {
+                setEditorValue(e.target.value);
+              }}
+              onScroll={(e) => {
+                let p =
+                  (e.currentTarget.scrollTop /
+                    (e.currentTarget.scrollHeight -
+                      e.currentTarget.offsetHeight)) *
+                  100;
+                setScrollPosition(p);
 
-              let h =
-                previewWindow.current.scrollHeight -
-                e.currentTarget.offsetHeight;
-              // console.log("pixel :", h * (p / 100));
-              // console.log("scrollP :", previewWindow.current.scrollTop);
-              previewWindow.current.scrollTop = h * (scrollPosition / 100);
-            }}
-          ></textarea>
-        </article>
-      </section>
-      <section className="preview-container">
-        <article className="container">
-          <header className="container-header">
-            // Previewer
-            <button type="button" onClick={() => copy(outputValue)}>
-              Copy
-            </button>
-          </header>
-          <div
-            id="preview"
-            dangerouslySetInnerHTML={{ __html: outputValue }}
-            ref={previewWindow}
-          ></div>
-        </article>
-      </section>
+                let h =
+                  previewWindow.current.scrollHeight -
+                  e.currentTarget.offsetHeight;
+                previewWindow.current.scrollTop = h * (scrollPosition / 100);
+              }}
+            ></textarea>
+          </article>
+        </section>
+        <section className="preview-section">
+          <article className="container">
+            <header className="container-header">
+              <span>Previewer</span>
+              <button type="button" onClick={() => copy(outputValue)}>
+                Copy
+              </button>
+            </header>
+            <div
+              id="preview"
+              dangerouslySetInnerHTML={{ __html: outputValue }}
+              ref={previewWindow}
+            ></div>
+          </article>
+        </section>
+      </div>
+      <Footer />
     </div>
   );
 }

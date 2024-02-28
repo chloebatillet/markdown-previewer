@@ -5,29 +5,32 @@
 
 html {
   font-size: 100%;
+  background-color: var(--bg-color);
 }
 
 * {
-  //margin: 0;
   box-sizing: border-box;
 }
 
 .App {
-  background-color: var(--bg-color);
   width: 100%;
-  min-height: 100vh;
+  height: 95vh;
   color: var(--color);
+  font-size: 1rem;
+}
+
+.wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  height: 95vh;
 }
 
-.editor-container,
-.preview-container {
+.editor-section,
+.preview-section {
   width: 50%;
-  height: 100vh;
+  height: 100%;
   padding: 5vh 5vw;
 }
 
@@ -36,19 +39,17 @@ html {
   display: flex;
   flex-direction: column;
   height: 100%;
-  box-shadow: #282829 8px 8px 0px;
   border-radius: 12px;
   border: solid 1px var(--color);
-  opacity: 0;
-  transform: translateY(10px);
+  transform: translate(8px, 8px);
   animation: appear 0.5s;
   animation-fill-mode: forwards;
   animation-delay: 0.5s;
 
   @keyframes appear {
     to {
-      opacity: 1;
-      transform: translateY(0px);
+      box-shadow: #282829 8px 8px 0px;
+      transform: translate(0px);
     }
   }
 }
@@ -67,6 +68,11 @@ html {
   -webkit-text-stroke: 1px var(--color);
   font-weight: bold;
   z-index: 10;
+
+  span::before {
+    content: "#";
+    margin-right: 10px;
+  }
 }
 
 #editor {
@@ -148,17 +154,16 @@ button {
   background-color: #b9c1c3;
 }
 
-@import "~highlight.js/styles/default.css";
-
 @media screen and (max-width: 900px) {
-  .App {
+  .wrapper {
     flex-direction: column;
   }
 
-  .editor-container,
-  .preview-container {
+  .editor-section,
+  .preview-section {
     width: 100%;
     height: 50vh;
+    padding: 5vh 5vw;
   }
 }
 
@@ -205,4 +210,8 @@ td {
   padding-left: 5px;
   padding-right: 5px;
   text-align: left;
+}
+
+img {
+  width: 100%;
 }
