@@ -1,16 +1,27 @@
 :root {
-  --color: #6034ff;
+  --color: #282829;
+  --bg-color: #87b5b5;
+}
+
+html {
+  font-size: 100%;
+}
+
+* {
+  //margin: 0;
+  box-sizing: border-box;
 }
 
 .App {
-  background-color: #181818;
+  background-color: var(--bg-color);
   width: 100%;
   min-height: 100vh;
-  color: whitesmoke;
+  color: var(--color);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  font-size: 1rem;
 }
 
 .editor-container,
@@ -18,55 +29,126 @@
   width: 50%;
   height: 100vh;
   padding: 5vh 5vw;
+}
+
+.container {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-shadow: #282829 8px 8px 0px;
+  border-radius: 12px;
+  border: solid 1px var(--color);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: appear 0.5s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+
+  @keyframes appear {
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 }
 
 .container-header {
-  padding: 1rem;
-  font-size: 24px;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
   box-sizing: border-box;
   border-bottom: solid 1px var(--color);
-  background-color: #111111;
+  background-color: pink;
   border-radius: 12px 12px 0 0;
-  color: var(--color);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: var(--color) 0px 0px 12px;
+  -webkit-text-stroke: 1px var(--color);
+  font-weight: bold;
+  z-index: 10;
 }
 
 #editor {
   all: unset;
-  background-color: #111111;
-  padding: 1rem;
-  color: rgba(245, 245, 245, 0.739);
-  flex-grow: 1;
   font-family: "Courier New", Courier, monospace;
-  box-shadow: var(--color) 0px 0px 12px;
-  border-radius: 0 0 12px 12px;
+  width: 100%;
+  height: auto;
 }
 
 #preview {
-  background-color: #111111;
+  overflow-y: auto;
+}
+
+#editor,
+#preview {
+  background-color: #dfe9eb;
   padding: 1rem;
   flex-grow: 1;
-  overflow-y: auto;
-  color: rgba(245, 245, 245, 0.739);
-  box-shadow: var(--color) 0px 0px 12px;
   border-radius: 0 0 12px 12px;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 
 button {
   all: unset;
-  background-color: var(--color);
-  border-radius: 12px;
+  background-color: hotpink;
+  border: var(--color) solid 1px;
+  border-radius: 8px;
   color: whitesmoke;
   font-size: 16px;
-  padding: 4px 8px;
+  padding: 4px 12px;
   text-transform: lowercase;
+  box-shadow: #282829 3px 3px 0px;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translate(3px, 3px);
+    box-shadow: #282829 0px 0px 0px;
+  }
 }
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #dfe9eb;
+  margin: 4px;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #dfe9eb;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #dfe9eb;
+}
+
+::-webkit-scrollbar-button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c4cdcf;
+  display: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #c4cdcf;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #b9c1c3;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #b9c1c3;
+}
+
+@import "~highlight.js/styles/default.css";
 
 @media screen and (max-width: 900px) {
   .App {
@@ -78,4 +160,49 @@ button {
     width: 100%;
     height: 50vh;
   }
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: solid 0.2rem var(--color);
+}
+
+h2 {
+  font-size: 1.5rem;
+  border-bottom: solid 0.15rem var(--color);
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+code.hljs,
+code {
+  background-color: var(--color);
+  color: whitesmoke;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 4px;
+}
+
+pre {
+  box-sizing: border-box;
+  text-wrap: wrap;
+  padding: 0.5rem;
+}
+
+blockquote {
+  border-left: solid 0.2rem var(--color);
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+}
+
+table,
+th,
+td {
+  border: solid 0.1rem var(--color);
+  border-collapse: collapse;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
 }
