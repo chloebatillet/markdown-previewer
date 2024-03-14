@@ -7,6 +7,9 @@ import hljs from "highlight.js";
 import DOMPurify from "isomorphic-dompurify";
 
 import "highlight.js/styles/github-dark.css";
+
+import { Analytics } from "@vercel/analytics/react";
+
 import Footer from "./Footer/Footer";
 
 function App() {
@@ -146,6 +149,7 @@ You can also make text **bold**... whoa!
         </section>
       </div>
       <Footer />
+      <Analytics />
     </div>
   );
 }
